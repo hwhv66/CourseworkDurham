@@ -1,0 +1,1174 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{phase\_transition}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{the-ising-model-and-phase-transitions}{%
+\section{The Ising model and phase
+transitions}\label{the-ising-model-and-phase-transitions}}
+
+    \hypertarget{remarks-on-completing-the-module}{%
+\subsubsection{Remarks on completing the
+module}\label{remarks-on-completing-the-module}}
+
+This assignment is summatively assessed. It is imperative that you
+submit the notebook on time.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} from ipywidgets import widgets, interact, interactive, fixed}
+        \PY{k+kn}{from} \PY{n+nn}{ipywidgets} \PY{k}{import} \PY{n}{widgets}\PY{p}{,} \PY{n}{interact}\PY{p}{,} \PY{n}{interactive}\PY{p}{,} \PY{n}{fixed}
+        \PY{k+kn}{from} \PY{n+nn}{ipywidgets} \PY{k}{import} \PY{n}{Button}\PY{p}{,} \PY{n}{HBox}\PY{p}{,} \PY{n}{VBox}
+        \PY{k+kn}{import} \PY{n+nn}{shelve}
+        \PY{n}{assessmentName}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ID}\PY{l+s+s2}{\PYZdq{}}\PY{p}{;}
+        \PY{k+kn}{import} \PY{n+nn}{os}
+        
+        \PY{k}{def} \PY{n+nf}{get\PYZus{}last\PYZus{}value}\PY{p}{(}\PY{n}{key}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{isfile}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.choices.shelve}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o+ow}{or} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{isfile}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.choices.shelve.dir}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                \PY{n}{s}\PY{o}{=}\PY{n}{shelve}\PY{o}{.}\PY{n}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.choices.shelve}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                \PY{k}{return} \PY{n}{s}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{n}{key}\PY{p}{,}\PY{k+kc}{None}\PY{p}{)}
+            \PY{k}{return} \PY{k+kc}{None}
+        
+        \PY{k}{def} \PY{n+nf}{make\PYZus{}value\PYZus{}change\PYZus{}fn}\PY{p}{(}\PY{n}{assessmentName}\PY{p}{,}\PY{n}{name}\PY{p}{)}\PY{p}{:}
+            \PY{k}{def} \PY{n+nf}{fn}\PY{p}{(}\PY{n}{change}\PY{p}{)}\PY{p}{:}
+                \PY{n}{s}\PY{o}{=}\PY{n}{shelve}\PY{o}{.}\PY{n}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.choices.shelve}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                \PY{n}{key}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}0\PYZcb{}}\PY{l+s+s1}{\PYZus{}}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{assessmentName}\PY{p}{,}\PY{n}{name}\PY{p}{)}
+                \PY{n}{s}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{o}{=}\PY{n}{change}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{new}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+                \PY{n}{s}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+            \PY{k}{return} \PY{n}{fn}
+         
+        \PY{k}{class} \PY{n+nc}{myFloatBox}\PY{p}{:}
+            \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,}\PY{n}{name}\PY{p}{,}\PY{n}{description}\PY{p}{,}\PY{n}{long\PYZus{}description}\PY{p}{)}\PY{p}{:}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{name}\PY{o}{=}\PY{n}{name}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{description}\PY{o}{=}\PY{n}{description}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{long\PYZus{}description}\PY{o}{=}\PY{n}{long\PYZus{}description}
+            \PY{k}{def} \PY{n+nf}{getWidget}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{widgets}\PY{o}{=}\PY{p}{[} 
+                      \PY{n}{widgets}\PY{o}{.}\PY{n}{FloatText}\PY{p}{(}
+                      \PY{n}{description}\PY{o}{=}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{description}\PY{p}{,}
+                \PY{n}{disabled}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,}
+                          \PY{n}{value}\PY{o}{=}\PY{n}{get\PYZus{}last\PYZus{}value}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}0\PYZcb{}}\PY{l+s+s1}{\PYZus{}}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{assessmentName}\PY{p}{,}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{name}\PY{p}{)}\PY{p}{)}
+                \PY{p}{)}\PY{p}{]}
+                
+                \PY{n}{txt}\PY{o}{=}\PY{n}{widgets}\PY{o}{.}\PY{n}{HTMLMath}\PY{p}{(}
+                    \PY{n}{value}\PY{o}{=}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{long\PYZus{}description}\PY{p}{,}
+                    \PY{n}{placeholder}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                    \PY{n}{description}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                \PY{p}{)}
+                
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{widget}\PY{o}{=}\PY{n}{VBox}\PY{p}{(}\PY{p}{[}\PY{n}{txt}\PY{p}{]}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{widgets}\PY{p}{)}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{widgets}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{observe}\PY{p}{(}\PY{n}{make\PYZus{}value\PYZus{}change\PYZus{}fn}\PY{p}{(}\PY{n}{assessmentName}\PY{p}{,}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{name}\PY{p}{)}\PY{p}{,} \PY{n}{names}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+                \PY{k}{return} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{widget}
+\end{Verbatim}
+
+
+    \hypertarget{ising-model}{%
+\subsubsection{Ising model}\label{ising-model}}
+
+The task for this assignment is to implement the Ising Model introduced
+in the lecture. The structure in terms of a code skeleton provided below
+needs to be followed. Otherwise the automatic tests, which allow you to
+test different parts of you implementation, will not work.
+
+We consider an Ising model, in which the interaction energy
+\(E_i=E(s_i)\) of spin \(i\) is calculated from
+
+\begin{align}
+E(s_{i}) = \frac{J}{2} \sum\limits_{j} (1-s_{i} s_{j})
+\end{align}
+
+where the sum is over the 4 nearest neighbours of \(i\).
+
+We will restrict the calculation to a 2 dimensional grid throughout,
+hence 4 nearest neighbours, \(x=\pm 1\), \(y=\pm 1\). Notice that the
+expression for \(E\) is different from the form considered in the
+lecture.
+
+To simplify the calculations, we will use the dimensionless interaction
+energy \[
+\mathcal{E}(s_\mathrm{i})  \equiv \frac{\beta}{2} \sum\limits_{j} (1-s_{i} s_{j}),
+\] where \[
+\beta = \frac{J}{kT},
+\] in the following. Here, \(k\) is Boltzmann's constant, and \(T\) is
+the temperature.
+
+Given all \(N\) spin states, we calculate the ensenble-averaged
+macroscopic magnetization \(\bar{M}\), as \begin{align}
+\bar{M} = \left\langle\left|\frac{1}{N}\sum_{i=1}^N s_{i}\right|\right\rangle
+\end{align}
+
+The \(\langle\rangle\) brackets denote the ensemble average. The
+parameter \(J>0\) has the dimensions of energy, and consequently
+\(\beta\) is dimensionless.
+
+Follow the numbered steps in the following cells.
+
+    The cells below describe how to proceed, step-by-step. Begin by reading
+through all steps, comparing the instructions to the Ising model
+discussed in the lecture. Complete the assignment using the cells below.
+Several cells allow you to test your implementation step by step.
+
+    \hypertarget{set-up-the-regular-grid}{%
+\paragraph{1. Set up the regular grid}\label{set-up-the-regular-grid}}
+
+Set up a 2D grid in the form of a \textbf{python class}, called
+\texttt{Grid}. The class should contain - the spin array - the value of
+\(J\)
+
+The spin array should be a 2D array of dimension \(L^2\), with \(L=32\).
+We will address a particular spin with its 2D Cartesian coordinates
+\((x,y)\), where \(x=0\cdots L-1\) and \(y=1\cdots L-1\) are the indices
+in the 2D array. So, for example, spin \(s_{xy}\) refers to the spin
+located at vertex \((x,y)\) of the grid.
+
+Initialize the spins on the grid randomly, meaning each spin can be
+either up, \(s_{xy}=1\), or down, \(s_{xy}=-1\), with equal probability.
+
+When performing calculations on the grid, we will assume
+\textbf{periodic boundary conditions}
+
+** no marks **
+
+    \hypertarget{calculate-the-energy}{%
+\paragraph{2. Calculate the energy}\label{calculate-the-energy}}
+
+Write a method, \texttt{energy}, as part of the class \texttt{Grid},
+which calculates the interaction energy of a given spin, \(s_{xy}\), by
+summing over its four nearest neighbours. The function should take the
+grid array, \(\beta\), and the cell indices \(x\) and \(y\) as
+parameters. It should \textbf{return a python tuple} containing two
+dimensionless energies corresponding to the energy of the current spin
+state of cell \(xy\),
+\(\mathcal{E}_\mathrm{c} \equiv \mathcal{E}\left(s_{xy}^\mathrm{current}\right)\)
+and the energy of the flipped spin state
+\(\mathcal{E}_\mathrm{f} \equiv \mathcal{E}\left(s_{xy}^\mathrm{flipped}\right)\).
+
+This means that for a cell with spin state \(s_{xy} = 1\), the method
+should return
+\(\left(\mathcal{E}\left(s_{xy} = 1\right), \mathcal{E}\left(s_{xy} = -1\right)\right)\)
+and vice versa.
+
+** Remember to account for periodic boudnary conditions on the grid.**
+
+You can test the implementation of this method using the test cells
+provded. What are the interaction energies of cells (6,6), (15,0) and
+(31, 17) of the assignment grid given below (please include the answer
+to this question in the PDF you hand in).
+
+** 2 marks**
+
+    \hypertarget{calculate-the-probability-of-flipping-a-spin}{%
+\paragraph{3. Calculate the probability of flipping a
+spin}\label{calculate-the-probability-of-flipping-a-spin}}
+
+The probability that the spin at vertex \((x,y)\) is flipped depends on
+the spin states of its neighbours and the value of \(\beta\) as
+explained in the lecture.
+
+Write a method \texttt{prob\_flip} which calculates the probability that
+spin \(s_{xy}\) is flipped, given the (dimensionless) interaction
+energies for the current state \(\mathcal{E}_\mathrm{c}\) and the
+flipped state \(\mathcal{E}_\mathrm{f}\).
+
+The probability for a flip is given by \begin{align}
+\mathcal{P}_\mathrm{flip} = 
+\begin{cases}
+\exp\left(-\left[\mathcal{E}_\mathrm{f} - \mathcal{E}_\mathrm{c}\right]\right) & \text{if } \mathcal{E}_\mathrm{f} > \mathcal{E}_\mathrm{c}, \\
+1 & \text{if } \mathcal{E}_\mathrm{f} \leq \mathcal{E}_\mathrm{c}.
+\end{cases}
+\end{align}
+
+You can test the implementation of this method using the test cells
+provided. What are the probabilities for cells (12, 12), (18,0) and (31,
+12) of the assignment grid given below (please include the answer to
+this question in the PDF you hand in)?
+
+** 2 marks **
+
+    \hypertarget{calculate-the-macroscopic-magnetisation-m}{%
+\paragraph{\texorpdfstring{4. Calculate the macroscopic magnetisation,
+\(M\)}{4. Calculate the macroscopic magnetisation, M}}\label{calculate-the-macroscopic-magnetisation-m}}
+
+Write a method which calculates the current macroscopic magnetisation of
+a given grid, and add it to the \texttt{Grid} class. The function should
+take the grid-array as a parameter and return the mean, macroscopic
+magnetisation,
+
+\[ M=\frac{1}{N}\sum_{i=1}^N s_i\,.\]
+
+You can test the implementation of this method using the test cells
+provded. Calculate the magnetisation of the assignment grid. State the
+answer to 3 significant digits on the PDF file you hand in.
+
+\textbf{2 marks}
+
+    \hypertarget{red-black-sweep}{%
+\paragraph{5. Red-black sweep}\label{red-black-sweep}}
+
+Write a method to sweep over all spins in turn, first in \(x\) (say) and
+then in \(y\) in a \textbf{red-black pattern}. Red-black means, first
+loop over all the red cells on a red-black chessboard pattern (looping
+over them \(x\) first, then \(y\)). Once all the red cells are done,
+then update all the black cells. Add this method to the \texttt{Grid}
+class.
+
+For each spin in turn, flip the spin or not following the criterion
+discussed in the lecture. This means that the spin in each cell in turn
+should be flipped with a probability \(\mathcal{P}_\mathrm{flip}\) (as
+discussed in step \textbf{3}).
+
+You can use the methods implemented in step \textbf{2} and \textbf{3}.
+
+** no marks **
+
+    \hypertarget{thermalisation-and-magnetisation-measurement}{%
+\paragraph{6. Thermalisation and magnetisation
+measurement}\label{thermalisation-and-magnetisation-measurement}}
+
+Starting from a random configuration, the system needs to be evolved
+over a number of full red-black sweeps in order to reach thermal
+equilibrium. This \emph{thermalization} is part of the method you
+develop in this step.
+
+Write a method that starts by sweeping the grid \(N_\mathrm{therm}\)
+times to allow for the system to thermalize before you carry out any
+measurements.
+
+Next, the method should perform a further \(N_\mathrm{measure}\) sweeps,
+while in addition computing and recording the value of \(M\) after every
+sweep. Use the method you developed in step \textbf{4} and the sweep
+implementaton of step \textbf{5}.
+
+\(N_\mathrm{therm}\) and \(N_\mathrm{measure}\) are input parameters of
+the method. The method should return a numpy array of length
+\(N_\mathrm{measure}\), containing the magentisations measured after
+each measurement sweep.
+
+Add this method to the \texttt{Grid} class.
+
+\textbf{no marks}
+
+    \hypertarget{thermalisation}{%
+\paragraph{7. Thermalisation}\label{thermalisation}}
+
+Plot the magnetisation over time for 1000 full mesh sweeps for
+\(\beta = 0.1, 0.8\) and \(1.6\) (include the thermalisation period in
+the plot). Include this plot in the PDF you hand in. Save the plot to a
+file `Thermalization.pdf'
+
+\textbf{4 marks}
+
+    \hypertarget{ensemble-averaged-magnetisation-bar-m-as-a-function-of-beta}{%
+\paragraph{\texorpdfstring{8. Ensemble-averaged magnetisation,
+\(\bar M\), as a function of
+\(\beta\)}{8. Ensemble-averaged magnetisation, \textbackslash{}bar M, as a function of \textbackslash{}beta}}\label{ensemble-averaged-magnetisation-bar-m-as-a-function-of-beta}}
+
+Once the system has thermalized (a good choice is
+\(N_\mathrm{therm} =400\) thermalisation sweeps), measure the
+time-averaged magnetisation over 1000 sweeps. From this, estimate the
+ensemble-averaged magnetisation, \(\bar M\). Plot \(\bar M\) as a
+function of \(1/\beta\) for
+\(\beta = 1.6, 1.3, 1.1, 1.0, 0.9, 0.8, 0.7, 0.6, 0.4, 0.1\). Include
+this plot in the PDF you hand in. Save the plot to a file
+`Magnetisation.pdf'.
+
+\textbf{4 marks}
+
+    \hypertarget{critical-temperature}{%
+\paragraph{9. Critical temperature}\label{critical-temperature}}
+
+The critical temperature, \(T_c\), in the mean field approximation, is
+given by \[
+T_c=\frac{h J}{2k_B},
+\] where h is the number of nearest-neighbours, as discussed in the
+lecture. Use this to calculate the critical value \(\beta_c\) which
+corresponds to the critical temperature and mark it in the plot produced
+in step \textbf{8} (If you could not produce the plot in step \textbf{8}
+you may also mention the numerical value of \(\beta_c\) on the solution
+you hand in).
+
+\textbf{2 marks}
+
+    \hypertarget{mean-field-approximation}{%
+\paragraph{10. Mean field
+approximation}\label{mean-field-approximation}}
+
+The ensemble-averaged value of the mean magnitization in the mean field
+approximation, is the solution of \[
+\bar M - \tanh\left( \frac{T_c\bar M}{T} \right) = 0\,,
+\] as discussed in the lecture. This equation can not be solved
+analytically for \(\bar M\), for given \(T_c/T\).
+
+Rewrite the equation in terms of \(\beta\) using the relation between
+\(T\) and \(\beta\) derived before, and solve the resulting formula
+numerically for
+\(\beta = 1.6, 1.3, 1.1, 1.0, 0.9, 0.8, 0.7, 0.6, 0.4, 0.1\). You may
+want to use the root finding methods implemented in previous exercises.
+Redo the plot of step \textbf{8}, but on top of the numerical result,
+over plot the mean field approximation. Add a legend to the plot which
+allows to distinguish the solution obtained in step \textbf{8} from the
+mean field approximation.
+
+Save the plot as `MeanField.pdf'
+
+\textbf{4 marks}
+
+    \hypertarget{solution}{%
+\subsection{Solution}\label{solution}}
+
+Use the cells below to complete the assignment. Use the test cells
+provided to make sure you are on the right track.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}155}]:} \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+          \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+          \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt} 
+          \PY{k+kn}{import} \PY{n+nn}{sys}
+          \PY{k+kn}{import} \PY{n+nn}{os}
+          \PY{n}{sys}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{getcwd}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{interpolate} \PY{k}{import} \PY{n}{CubicSpline}
+          \PY{k+kn}{import} \PY{n+nn}{pickle}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}156}]:} \PY{c+c1}{\PYZsh{} This cell is hidden from the student\PYZsq{}s notebook. It generates the buttons used in the answers.}
+          \PY{k+kn}{from} \PY{n+nn}{ipywidgets} \PY{k}{import} \PY{n}{widgets}\PY{p}{,} \PY{n}{interact}\PY{p}{,} \PY{n}{interactive}\PY{p}{,} \PY{n}{fixed}
+          \PY{k+kn}{from} \PY{n+nn}{ipywidgets} \PY{k}{import} \PY{n}{Button}\PY{p}{,} \PY{n}{HBox}\PY{p}{,} \PY{n}{VBox}
+          \PY{k+kn}{import} \PY{n+nn}{shelve}
+          \PY{n}{assessmentName}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{test}\PY{l+s+s2}{\PYZdq{}}\PY{p}{;}
+          \PY{k+kn}{import} \PY{n+nn}{os}
+          
+          \PY{k}{def} \PY{n+nf}{get\PYZus{}last\PYZus{}value}\PY{p}{(}\PY{n}{key}\PY{p}{)}\PY{p}{:}
+              \PY{k}{if} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{isfile}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.choices.shelve}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o+ow}{or} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{isfile}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.choices.shelve.dir}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{s}\PY{o}{=}\PY{n}{shelve}\PY{o}{.}\PY{n}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.choices.shelve}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                  \PY{k}{return} \PY{n}{s}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{n}{key}\PY{p}{,}\PY{k+kc}{None}\PY{p}{)}
+              \PY{k}{return} \PY{k+kc}{None}
+          
+          
+          \PY{k}{class} \PY{n+nc}{myRadioButton}\PY{p}{:}
+              \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,}\PY{n}{name}\PY{p}{,}\PY{n}{description}\PY{p}{,}\PY{n}{options}\PY{p}{)}\PY{p}{:}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{name}\PY{o}{=}\PY{n}{name}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{options}\PY{o}{=}\PY{n}{options}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{description}\PY{o}{=}\PY{n}{description}
+              \PY{k}{def} \PY{n+nf}{getWidget}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                  \PY{k}{def} \PY{n+nf}{on\PYZus{}value\PYZus{}change}\PY{p}{(}\PY{n}{change}\PY{p}{)}\PY{p}{:}
+                      \PY{n}{s}\PY{o}{=}\PY{n}{shelve}\PY{o}{.}\PY{n}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.choices.shelve}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                      \PY{n}{key}\PY{o}{=}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{getKey}\PY{p}{(}\PY{p}{)}
+                      \PY{n}{s}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{o}{=}\PY{n}{change}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{new}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+                      \PY{n}{s}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+          
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{widget}\PY{o}{=}\PY{n}{widgets}\PY{o}{.}\PY{n}{RadioButtons}\PY{p}{(}
+                      \PY{n}{options}\PY{o}{=}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{options}\PY{p}{,}
+                      \PY{n}{value}\PY{o}{=}\PY{n}{get\PYZus{}last\PYZus{}value}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{getKey}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                      \PY{n}{description}\PY{o}{=}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{description}\PY{p}{,}
+                      \PY{n}{disabled}\PY{o}{=}\PY{k+kc}{False}
+                  \PY{p}{)}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{widget}\PY{o}{.}\PY{n}{observe}\PY{p}{(}\PY{n}{on\PYZus{}value\PYZus{}change}\PY{p}{,} \PY{n}{names}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+                  \PY{k}{return} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{widget}
+              \PY{k}{def} \PY{n+nf}{getKey}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                  \PY{k}{return} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}0\PYZcb{}}\PY{l+s+s1}{\PYZus{}}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{assessmentName}\PY{p}{,}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{name}\PY{p}{)}
+                  
+                  
+          \PY{k}{def} \PY{n+nf}{on\PYZus{}value\PYZus{}change}\PY{p}{(}\PY{n}{change}\PY{p}{)}\PY{p}{:}
+                          \PY{n}{s}\PY{o}{=}\PY{n}{shelve}\PY{o}{.}\PY{n}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.choices.shelve}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                          \PY{n}{key}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}0\PYZcb{}}\PY{l+s+s1}{\PYZus{}}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+s1}{\PYZus{}}\PY{l+s+si}{\PYZob{}2\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{assessmentName}\PY{p}{,}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{name}\PY{p}{,}\PY{n}{i}\PY{p}{)}
+                          \PY{n}{s}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{o}{=}\PY{n}{change}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{new}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+                          \PY{n}{s}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+          
+          \PY{k}{def} \PY{n+nf}{make\PYZus{}value\PYZus{}change\PYZus{}fn}\PY{p}{(}\PY{n}{assessmentName}\PY{p}{,}\PY{n}{name}\PY{p}{,}\PY{n}{i}\PY{p}{)}\PY{p}{:}
+                  \PY{k}{def} \PY{n+nf}{fn}\PY{p}{(}\PY{n}{change}\PY{p}{)}\PY{p}{:}
+                      \PY{n}{s}\PY{o}{=}\PY{n}{shelve}\PY{o}{.}\PY{n}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.choices.shelve}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                      \PY{n}{key}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}0\PYZcb{}}\PY{l+s+s1}{\PYZus{}}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+s1}{\PYZus{}}\PY{l+s+si}{\PYZob{}2\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{assessmentName}\PY{p}{,}\PY{n}{name}\PY{p}{,}\PY{n}{i}\PY{p}{)}
+                      \PY{n}{s}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{o}{=}\PY{n}{change}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{new}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+                      \PY{n}{s}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+                  \PY{k}{return} \PY{n}{fn}
+          
+          \PY{k}{class} \PY{n+nc}{myCheckBoxSet}\PY{p}{:}
+              \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,}\PY{n}{name}\PY{p}{,}\PY{n}{description}\PY{p}{,}\PY{n}{options}\PY{p}{)}\PY{p}{:}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{name}\PY{o}{=}\PY{n}{name}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{options}\PY{o}{=}\PY{n}{options}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{description}\PY{o}{=}\PY{n}{description}
+              \PY{k}{def} \PY{n+nf}{getWidget}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{keys}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}0\PYZcb{}}\PY{l+s+s1}{\PYZus{}}\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+s1}{\PYZus{}}\PY{l+s+si}{\PYZob{}2\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{assessmentName}\PY{p}{,}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{name}\PY{p}{,}\PY{n}{i}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{options}\PY{p}{)}\PY{p}{)}\PY{p}{]}    
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{widgets}\PY{o}{=}\PY{p}{[} \PY{n}{widgets}\PY{o}{.}\PY{n}{Checkbox}\PY{p}{(}\PY{n}{value}\PY{o}{=}\PY{n}{get\PYZus{}last\PYZus{}value}\PY{p}{(}\PY{n}{key}\PY{p}{)}\PY{p}{,}
+              \PY{n}{description}\PY{o}{=}\PY{n}{o}\PY{p}{,}
+              \PY{n}{disabled}\PY{o}{=}\PY{k+kc}{False}
+                  \PY{p}{)} \PY{k}{for} \PY{n}{key}\PY{p}{,}\PY{n}{o} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{keys}\PY{p}{,}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{options}\PY{p}{)}\PY{p}{]}
+                  
+                  \PY{n}{txt}\PY{o}{=}\PY{n}{widgets}\PY{o}{.}\PY{n}{HTMLMath}\PY{p}{(}
+                      \PY{n}{value}\PY{o}{=}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{description}\PY{p}{,}
+                      \PY{n}{placeholder}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                      \PY{n}{description}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                  \PY{p}{)}
+          
+                  
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{widget}\PY{o}{=}\PY{n}{VBox}\PY{p}{(}\PY{p}{[}\PY{n}{txt}\PY{p}{]}\PY{o}{+}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{widgets}\PY{p}{)}
+                  \PY{k}{for} \PY{n}{i}\PY{p}{,}\PY{n}{w} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{widgets}\PY{p}{)}\PY{p}{:}
+                      \PY{n}{w}\PY{o}{.}\PY{n}{observe}\PY{p}{(}\PY{n}{make\PYZus{}value\PYZus{}change\PYZus{}fn}\PY{p}{(}\PY{n}{assessmentName}\PY{p}{,}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{name}\PY{p}{,}\PY{n}{i}\PY{p}{)}\PY{p}{,} \PY{n}{names}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+                  \PY{k}{return} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{widget}
+          \PY{k+kn}{import} \PY{n+nn}{mywidgets}    
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}120}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{random}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.09294653669464614
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}161}]:} \PY{k}{class} \PY{n+nc}{Grid}\PY{p}{:}
+              \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{size}\PY{p}{,} \PY{n}{beta}\PY{p}{)}\PY{p}{:}
+                  \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}This function initialises the grid, i.e. it sets the }
+          \PY{l+s+sd}{        grid size, the value of beta and initialises the cells of the }
+          \PY{l+s+sd}{        grid with randomly chosen \PYZsq{}plus\PYZsq{} (1) or \PYZsq{}minus\PYZsq{} (\PYZhy{}1) states.\PYZsq{}\PYZsq{}\PYZsq{}}
+                  \PY{c+c1}{\PYZsh{} set self.size, self.beta, and self.cells}
+                  \PY{c+c1}{\PYZsh{} self.cells is a 2D array, so that self.cells[i,j]=+1 or \PYZhy{}1, the spin in grid location (i,j)}
+                  \PY{c+c1}{\PYZsh{} YOUR CODE HERE}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{size} \PY{o}{=} \PY{n}{size}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{beta} \PY{o}{=} \PY{n}{beta}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cells} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                  \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{size}\PY{p}{)}\PY{p}{:}
+                      \PY{n}{tmp} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                      \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{size}\PY{p}{)}\PY{p}{:}
+                          \PY{k}{if} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{random}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZgt{}} \PY{l+m+mf}{0.5}\PY{p}{)}\PY{p}{:}
+                              \PY{n}{tmp}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+                          \PY{k}{else}\PY{p}{:}
+                              \PY{n}{tmp}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+                      \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cells}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{tmp}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{}         raise NotImplementedError()}
+                          
+              \PY{k}{def} \PY{n+nf}{energy}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{n}{beta}\PY{p}{,} \PY{n}{grid}\PY{p}{)}\PY{p}{:}
+                  \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}This function calculates the energies \PYZsq{}e\PYZus{}plus\PYZsq{} and \PYZsq{}e\PYZus{}minus\PYZsq{} }
+          \PY{l+s+sd}{        corresponding to the two possible states \PYZsq{}plus\PYZsq{} and \PYZsq{}minus\PYZsq{} for the spin at location (i, j)}
+          \PY{l+s+sd}{        of a given grid with a given value of beta.}
+          \PY{l+s+sd}{        returns: the two energy states \PYZsq{}e\PYZus{}current\PYZsq{} and \PYZsq{}e\PYZus{}flip\PYZsq{} as a tuple. }
+          \PY{l+s+sd}{        \PYZsq{}e\PYZus{}current\PYZsq{} is the energy of the spin (i,j) in its current spin state}
+          \PY{l+s+sd}{        \PYZsq{}e\PYZus{}flip\PYZsq{} is the energy of the spin (i,j) if you were to flip its spin}
+          \PY{l+s+sd}{        \PYZsq{}\PYZsq{}\PYZsq{}}
+                  \PY{c+c1}{\PYZsh{} YOUR CODE HERE}
+                  \PY{n}{e\PYZus{}current} \PY{o}{=} \PY{l+m+mi}{0}
+                  \PY{k}{if} \PY{n}{i} \PY{o}{+} \PY{l+m+mi}{1} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{grid}\PY{p}{)}\PY{p}{:}
+                      \PY{n}{e\PYZus{}current} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{grid}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{*} \PY{n}{grid}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+                      \PY{n}{e\PYZus{}current} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{grid}\PY{p}{[}\PY{n}{i} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{*} \PY{n}{grid}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+                  \PY{k}{else}\PY{p}{:}
+                      \PY{n}{e\PYZus{}current} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{grid}\PY{p}{[}\PY{n}{i} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{*} \PY{n}{grid}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+                      \PY{n}{e\PYZus{}current} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{grid}\PY{p}{[}\PY{n}{i} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{*} \PY{n}{grid}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+                      
+                  \PY{k}{if} \PY{n}{j} \PY{o}{+} \PY{l+m+mi}{1} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{grid}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+                      \PY{n}{e\PYZus{}current} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{grid}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{*} \PY{n}{grid}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+                      \PY{n}{e\PYZus{}current} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{grid}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{n}{j} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{*} \PY{n}{grid}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+                  \PY{k}{else}\PY{p}{:}
+                      \PY{n}{e\PYZus{}current} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{grid}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{n}{j} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{*} \PY{n}{grid}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+                      \PY{n}{e\PYZus{}current} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{grid}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{n}{j} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{*} \PY{n}{grid}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+                  \PY{n}{e\PYZus{}current} \PY{o}{*}\PY{o}{=} \PY{n}{beta} \PY{o}{/} \PY{l+m+mi}{2}
+                  \PY{n}{e\PYZus{}flip} \PY{o}{=} \PY{l+m+mi}{4} \PY{o}{*} \PY{n}{beta} \PY{o}{\PYZhy{}} \PY{n}{e\PYZus{}current}
+                  \PY{k}{return} \PY{n}{e\PYZus{}current}\PY{p}{,} \PY{n}{e\PYZus{}flip}
+              
+              \PY{k}{def} \PY{n+nf}{prob\PYZus{}flip}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{e\PYZus{}current}\PY{p}{,} \PY{n}{e\PYZus{}flip}\PY{p}{)}\PY{p}{:}
+                  \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}This function calculates the probability of a spin flip }
+          \PY{l+s+sd}{        for a given spin, given the energies e\PYZus{}current and e\PYZus{}flip }
+          \PY{l+s+sd}{        of the current and the flipped state for the cell.}
+          \PY{l+s+sd}{        returns: the probability for the flip\PYZsq{}\PYZsq{}\PYZsq{}}
+                  \PY{c+c1}{\PYZsh{} YOUR CODE HERE}
+          \PY{c+c1}{\PYZsh{}         raise NotImplementedError()}
+                  \PY{n}{probability\PYZus{}for\PYZus{}flip} \PY{o}{=} \PY{l+m+mi}{0}
+                  \PY{k}{if} \PY{n}{e\PYZus{}current} \PY{o}{\PYZgt{}} \PY{n}{e\PYZus{}flip}\PY{p}{:}
+                      \PY{n}{probability\PYZus{}for\PYZus{}flip} \PY{o}{=} \PY{l+m+mi}{1}
+                  \PY{k}{else}\PY{p}{:}
+                      \PY{n}{probability\PYZus{}for\PYZus{}flip} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1} \PY{o}{*} \PY{n+nb}{abs}\PY{p}{(}\PY{n}{e\PYZus{}flip} \PY{o}{\PYZhy{}} \PY{n}{e\PYZus{}current}\PY{p}{)}\PY{p}{)}
+                  \PY{k}{return} \PY{n}{probability\PYZus{}for\PYZus{}flip}
+              
+              \PY{k}{def} \PY{n+nf}{sweep}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                  \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}This function carries out a single red\PYZhy{}black sweep. }
+          \PY{l+s+sd}{        returns: nothing. For each spin in turn, it compute the probability for }
+          \PY{l+s+sd}{        flipping the spin, using the prob\PYZus{}flip function. Comparing the probablity,}
+          \PY{l+s+sd}{        it draws a random number to decide whether or not the flip the spin \PYZsq{}\PYZsq{}\PYZsq{}}
+                  \PY{c+c1}{\PYZsh{} YOUR CODE HERE}
+                  \PY{n}{new\PYZus{}grid} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cells}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+                  \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{new\PYZus{}grid}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                      \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{new\PYZus{}grid}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                          \PY{n}{e\PYZus{}current}\PY{p}{,} \PY{n}{e\PYZus{}flip} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{energy}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{beta}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cells}\PY{p}{)}
+                          \PY{n}{probability\PYZus{}for\PYZus{}flip} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{prob\PYZus{}flip}\PY{p}{(}\PY{n}{e\PYZus{}current}\PY{p}{,} \PY{n}{e\PYZus{}flip}\PY{p}{)}
+                          \PY{k}{if} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{random}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{n}{probability\PYZus{}for\PYZus{}flip}\PY{p}{)}\PY{p}{:}
+                              \PY{n}{new\PYZus{}grid}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{*}\PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cells} \PY{o}{=} \PY{n}{new\PYZus{}grid}
+          \PY{c+c1}{\PYZsh{}         raise NotImplementedError()}
+                                  
+                                  
+              \PY{k}{def} \PY{n+nf}{magnetisation}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{grid}\PY{p}{)}\PY{p}{:}
+                  \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}This function calculates the mean magnetisation of all the spin in the grid}
+          \PY{l+s+sd}{        returns: the mean magnetisation M\PYZsq{}\PYZsq{}\PYZsq{}}
+                  \PY{c+c1}{\PYZsh{} YOUR CODE HERE}
+                  \PY{n}{count} \PY{o}{=} \PY{l+m+mi}{0}
+                  \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{grid}\PY{p}{:}
+                      \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n}{i}\PY{p}{:}
+                          \PY{n}{count} \PY{o}{+}\PY{o}{=} \PY{n}{j}
+                  \PY{n}{M} \PY{o}{=} \PY{n}{count} \PY{o}{/} \PY{n+nb}{len}\PY{p}{(}\PY{n}{grid}\PY{p}{)} \PY{o}{/} \PY{n+nb}{len}\PY{p}{(}\PY{n}{grid}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{}         raise NotImplementedError()}
+                  \PY{k}{return} \PY{n}{M}
+              
+              \PY{k}{def} \PY{n+nf}{do\PYZus{}sweeps}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{n\PYZus{}therm}\PY{p}{,} \PY{n}{n\PYZus{}measure}\PY{p}{)}\PY{p}{:}
+                  \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}This function carries out n\PYZus{}therm thermalisation sweeps and n\PYZus{}measure measurement sweeps.}
+          \PY{l+s+sd}{        At the end of each measurement sweep the average magnetisation is computed and recorded.}
+          \PY{l+s+sd}{        returns: an array of length \PYZsq{}n\PYZus{}measure\PYZsq{} containing the recorded magnetisations for each measurement sweep.}
+          \PY{l+s+sd}{        It uses the sweep function, and the magnitization function\PYZsq{}\PYZsq{}\PYZsq{}}
+                  \PY{c+c1}{\PYZsh{} YOUR CODE HERE}
+                  \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n\PYZus{}therm}\PY{p}{)}\PY{p}{:}
+                      \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{sweep}\PY{p}{(}\PY{p}{)}
+                  \PY{n}{magnetisation} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                  \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n\PYZus{}measure}\PY{p}{)}\PY{p}{:}
+                      \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{sweep}\PY{p}{(}\PY{p}{)}
+                      \PY{n}{magnetisation}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{magnetisation}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{cells}\PY{p}{)}\PY{p}{)}
+                  \PY{k}{return} \PY{n}{magnetisation}
+                                                                              
+\end{Verbatim}
+
+
+    You can use the cells below to test your implementation
+
+    \hypertarget{test-and-assignment-grids}{%
+\subsubsection{Test and assignment
+grids}\label{test-and-assignment-grids}}
+
+The cell below loads the test grids, \texttt{test\_grid\_1} and
+\texttt{test\_grid\_2}, and their corresponding values for \(\beta\),
+\texttt{test\_beta\_1} and \texttt{test\_beta\_2}.
+
+In addition, it loads \texttt{assignement\_grid} and
+\texttt{assignment\_beta}.
+
+Use the first two grids to test your implementation. Use the third grid
+to answer the assignment questions.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}157}]:} \PY{n}{filename} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{test\PYZus{}grid\PYZus{}1.pickle}\PY{l+s+s1}{\PYZsq{}}
+          \PY{n}{f} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{n}{filename}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{p}{(}\PY{n}{test\PYZus{}grid\PYZus{}1}\PY{p}{,} \PY{n}{test\PYZus{}beta\PYZus{}1}\PY{p}{)} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+          \PY{n}{f}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+          
+          \PY{n}{filename} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{test\PYZus{}grid\PYZus{}2.pickle}\PY{l+s+s1}{\PYZsq{}}
+          \PY{n}{f} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{n}{filename}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{p}{(}\PY{n}{test\PYZus{}grid\PYZus{}2}\PY{p}{,} \PY{n}{test\PYZus{}beta\PYZus{}2}\PY{p}{)} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+          \PY{n}{f}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+          
+          \PY{n}{filename} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{assignment\PYZus{}grid.pickle}\PY{l+s+s1}{\PYZsq{}}
+          \PY{n}{f} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{n}{filename}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{p}{(}\PY{n}{assignment\PYZus{}grid}\PY{p}{,} \PY{n}{assignment\PYZus{}beta}\PY{p}{)} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+          \PY{n}{f}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ grid 1 loaded, size=}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{test\PYZus{}grid\PYZus{}1}\PY{p}{)}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ , beta= }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{test\PYZus{}beta\PYZus{}1}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ grid 2 loaded, size=}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{test\PYZus{}grid\PYZus{}2}\PY{p}{)}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ , beta= }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{test\PYZus{}beta\PYZus{}2}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ grid 3 loaded, size=}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{assignment\PYZus{}grid}\PY{p}{)}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ , beta= }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{assignment\PYZus{}beta}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+ grid 1 loaded, size= 32  , beta=  1.6
+ grid 2 loaded, size= 32  , beta=  0.8
+ grid 3 loaded, size= 32  , beta=  0.1
+
+    \end{Verbatim}
+
+    \hypertarget{interaction-energy-calculation}{%
+\paragraph{2. Interaction energy
+calculation}\label{interaction-energy-calculation}}
+
+The cell below allows you to test your interaction energy calculation
+method. If it does not return an error your implementation might be
+correct.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}136}]:} \PY{n}{g1} \PY{o}{=} \PY{n}{Grid}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{test\PYZus{}grid\PYZus{}1}\PY{p}{)}\PY{p}{,} \PY{n}{test\PYZus{}beta\PYZus{}1}\PY{p}{)}
+          \PY{n}{g2} \PY{o}{=} \PY{n}{Grid}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{test\PYZus{}grid\PYZus{}2}\PY{p}{)}\PY{p}{,} \PY{n}{test\PYZus{}beta\PYZus{}2}\PY{p}{)}
+          \PY{n}{cells} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{31}\PY{p}{,}\PY{l+m+mi}{17}\PY{p}{)}\PY{p}{]}
+          \PY{n}{energies\PYZus{}1} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{l+m+mf}{6.4}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{l+m+mf}{6.4}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{l+m+mf}{6.4}\PY{p}{)}\PY{p}{]}
+          \PY{n}{energies\PYZus{}2} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+m+mf}{0.8}\PY{p}{,} \PY{l+m+mf}{2.4000000000000004}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{1.6}\PY{p}{,} \PY{l+m+mf}{1.6}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{2.4}\PY{p}{,} \PY{l+m+mf}{0.8}\PY{p}{)}\PY{p}{]}
+          
+          \PY{k}{for} \PY{n}{c}\PY{p}{,} \PY{n}{cell} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{cells}\PY{p}{)}\PY{p}{:}
+              \PY{n}{i} \PY{o}{=} \PY{n}{cell}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+              \PY{n}{j} \PY{o}{=} \PY{n}{cell}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+              \PY{n}{e\PYZus{}1} \PY{o}{=} \PY{n}{g1}\PY{o}{.}\PY{n}{energy}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{n}{test\PYZus{}beta\PYZus{}1}\PY{p}{,} \PY{n}{test\PYZus{}grid\PYZus{}1}\PY{p}{)}
+              \PY{n}{e\PYZus{}2} \PY{o}{=} \PY{n}{g2}\PY{o}{.}\PY{n}{energy}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{n}{test\PYZus{}beta\PYZus{}2}\PY{p}{,} \PY{n}{test\PYZus{}grid\PYZus{}2}\PY{p}{)}
+              \PY{k}{assert}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{isclose}\PY{p}{(}\PY{n}{e\PYZus{}1}\PY{p}{,} \PY{n}{energies\PYZus{}1}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{all}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+              \PY{k}{assert}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{isclose}\PY{p}{(}\PY{n}{e\PYZus{}2}\PY{p}{,} \PY{n}{energies\PYZus{}2}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{all}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Your implementation might be correct!}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Your implementation might be correct!
+
+    \end{Verbatim}
+
+    \hypertarget{probability-calculation}{%
+\paragraph{3. Probability calculation}\label{probability-calculation}}
+
+The cell below allows you to test your probability calculation method.
+If it does not return an error your implementation might be correct.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}137}]:} \PY{n}{g1} \PY{o}{=} \PY{n}{Grid}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{test\PYZus{}grid\PYZus{}1}\PY{p}{)}\PY{p}{,} \PY{n}{test\PYZus{}beta\PYZus{}1}\PY{p}{)}
+          \PY{n}{energies} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mf}{0.3}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.2}\PY{p}{,} \PY{l+m+mf}{0.2}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{l+m+mf}{0.1}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{1.5}\PY{p}{,} \PY{l+m+mf}{1.6}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mf}{1.6}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.8}\PY{p}{,} \PY{l+m+mf}{2.4}\PY{p}{)}\PY{p}{]}
+          \PY{n}{probabilities} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.8187307530779818}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mf}{0.9048374180359595}\PY{p}{,} \PY{l+m+mf}{0.22313016014842982}\PY{p}{,} \PY{l+m+mf}{0.20189651799465544}\PY{p}{]}
+          \PY{n}{this\PYZus{}prob} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          
+          \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{e} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{energies}\PY{p}{)}\PY{p}{:}
+              \PY{n}{this\PYZus{}prob}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{g1}\PY{o}{.}\PY{n}{prob\PYZus{}flip}\PY{p}{(}\PY{n}{e}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{e}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+          \PY{k}{assert}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{isclose}\PY{p}{(}\PY{n}{this\PYZus{}prob}\PY{p}{,} \PY{n}{probabilities}\PY{p}{)}\PY{o}{.}\PY{n}{all}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Your implementation might be correct!}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Your implementation might be correct!
+
+    \end{Verbatim}
+
+    \hypertarget{magnetisation-calculation}{%
+\paragraph{4. Magnetisation
+calculation}\label{magnetisation-calculation}}
+
+The cell below allows you to test your magnetisation method. If it does
+not return an error your implementation might be correct.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}138}]:} \PY{n}{g1} \PY{o}{=} \PY{n}{Grid}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{test\PYZus{}grid\PYZus{}1}\PY{p}{)}\PY{p}{,} \PY{n}{test\PYZus{}beta\PYZus{}1}\PY{p}{)}
+          \PY{k}{assert}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{isclose}\PY{p}{(}\PY{n}{g1}\PY{o}{.}\PY{n}{magnetisation}\PY{p}{(}\PY{n}{test\PYZus{}grid\PYZus{}1}\PY{p}{)}\PY{p}{,}\PY{l+m+mf}{0.193359375}\PY{p}{)}\PY{p}{)}
+          \PY{n}{g2} \PY{o}{=} \PY{n}{Grid}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{test\PYZus{}grid\PYZus{}2}\PY{p}{)}\PY{p}{,} \PY{n}{test\PYZus{}beta\PYZus{}2}\PY{p}{)}
+          \PY{k}{assert}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{isclose}\PY{p}{(}\PY{n}{g2}\PY{o}{.}\PY{n}{magnetisation}\PY{p}{(}\PY{n}{test\PYZus{}grid\PYZus{}2}\PY{p}{)}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mf}{0.3203125}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Your implementation might be correct!}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Your implementation might be correct!
+
+    \end{Verbatim}
+
+    \hypertarget{the-following-hidden-cell-uses-the-assignment-grid-to-test}{%
+\paragraph{The following hidden cell uses the assignment grid to
+test}\label{the-following-hidden-cell-uses-the-assignment-grid-to-test}}
+
+\begin{itemize}
+\tightlist
+\item
+  the calculation of energies ** 2 marks**
+\item
+  the calculation of the probabilities ** 2 marks **
+\item
+  the calculation of the magnetization ** 2 marks **
+\end{itemize}
+
+    \hypertarget{implement-the-red-black-sweep}{%
+\paragraph{5 Implement the red-black
+sweep}\label{implement-the-red-black-sweep}}
+
+    \hypertarget{implement-the-thermalization-step}{%
+\paragraph{6 Implement the thermalization
+step}\label{implement-the-thermalization-step}}
+
+    \hypertarget{thermalisation}{%
+\paragraph{7. Thermalisation}\label{thermalisation}}
+
+Plot the magnetisation over time for 1000 full mesh sweeps for
+\(\beta = 0.1, 0.8\) and \(1.6\) (include the thermalisation period in
+the plot). Include this plot in the PDF you hand in. Save the plot as
+file `Thermalisation.pdf'
+
+\textbf{4 marks}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}160}]:} \PY{c+c1}{\PYZsh{} for each value of beta=[0.1, 0.8, 1.6]}
+          \PY{c+c1}{\PYZsh{}    generate a grid of size=32, with the given value of beta}
+          \PY{c+c1}{\PYZsh{}    perform N=1000 red\PYZhy{}black sweeps (each sweep runs over the full 32x32 grid)}
+          \PY{c+c1}{\PYZsh{}    calculate the mean magnetization, M for each sweep}
+          \PY{c+c1}{\PYZsh{}    Plot M as a function of sweep number.}
+          \PY{c+c1}{\PYZsh{}    You may want to use some of the plotting commands below.}
+          \PY{n}{betas} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mf}{0.8}\PY{p}{,} \PY{l+m+mf}{1.6}\PY{p}{]}
+          \PY{n}{size} \PY{o}{=} \PY{l+m+mi}{32}
+          \PY{n}{grids} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{n}{mags} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{n}{tmp} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{k}{for} \PY{n}{beta} \PY{o+ow}{in} \PY{n}{betas}\PY{p}{:}
+              \PY{n}{grids}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{Grid}\PY{p}{(}\PY{n}{size}\PY{p}{,} \PY{n}{beta}\PY{p}{)}\PY{p}{)}
+          \PY{k}{for} \PY{n}{grid} \PY{o+ow}{in} \PY{n}{grids}\PY{p}{:}
+              \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{grid}\PY{o}{.}\PY{n}{sweep}\PY{p}{(}\PY{p}{)}
+                  \PY{n}{tmp}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{grid}\PY{o}{.}\PY{n}{magnetisation}\PY{p}{(}\PY{n}{grid}\PY{o}{.}\PY{n}{cells}\PY{p}{)}\PY{p}{)}
+              \PY{n}{mags}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{tmp}\PY{p}{)}
+              \PY{n}{tmp} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{c+c1}{\PYZsh{} set\PYZhy{}up the figure}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Calculation finished}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+          \PY{n}{file} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Thermalisation.pdf}\PY{l+s+s2}{\PYZdq{}}
+          \PY{c+c1}{\PYZsh{} caculate mag, the average magnetization, for N=1000 sweeps}
+          \PY{c+c1}{\PYZsh{} \PYZsh{} YOUR CODE HERE}
+          \PY{c+c1}{\PYZsh{} raise NotImplementedError()}
+          \PY{c+c1}{\PYZsh{} plot the result, annotate the file, and save the file}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}N\PYZus{}}\PY{l+s+si}{\PYZob{}steps\PYZcb{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}M\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mf}{1.05}\PY{p}{,} \PY{l+m+mf}{1.05}\PY{p}{]}\PY{p}{)}
+          \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{0}
+          \PY{k}{for} \PY{n}{mag} \PY{o+ow}{in} \PY{n}{mags}\PY{p}{:}
+              \PY{c+c1}{\PYZsh{} pass the value of beta into the plot command to generate the label, as in}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{mag}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{mag}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{beta=}\PY{l+s+si}{\PYZpc{}.2f}\PY{l+s+s1}{\PYZsq{}}\PY{o}{\PYZpc{}}\PY{k}{betas}[i])
+              \PY{n}{i} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{n}{file}\PY{p}{)}
+          \PY{n}{fig}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Calculation finished
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/opt/conda/lib/python3.6/site-packages/matplotlib/figure.py:457: UserWarning: matplotlib is currently using a non-GUI backend, so cannot show the figure
+  "matplotlib is currently using a non-GUI backend, "
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_33_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{ensemble-averaged-magnetisation-bar-m-as-a-function-of-beta}{%
+\paragraph{\texorpdfstring{8. Ensemble-averaged magnetisation,
+\(\bar M\), as a function of
+\(\beta\)}{8. Ensemble-averaged magnetisation, \textbackslash{}bar M, as a function of \textbackslash{}beta}}\label{ensemble-averaged-magnetisation-bar-m-as-a-function-of-beta}}
+
+Once the system has thermalized (a good choice is
+\(N_\mathrm{therm} =400\) thermalisation sweeps), measure the
+time-averaged magnetisation over 1000 sweeps. From this, estimate the
+ensemble-averaged magnetisation, \(\bar M\). Plot \(\bar M\) as a
+function of \(1/\beta\) for
+\(\beta = 1.6, 1.3, 1.1, 1.0, 0.9, 0.8, 0.7, 0.6, 0.4, 0.1\). Include
+this plot in the PDF you hand in. Save the plot to a file
+`Magnetisation.pdf'.
+
+Perform the following steps: - for each of the listed values of beta: -
+create a \(32\times32\) random grid - sweep the for N=400 initial
+`thermalization' steps - \textbf{then} sweep for another 1000 steps,
+calculating \(M\) after every sweep - use this to compute the
+ensemble-averaged magnitization, \(\bar M\) for that value of \(\beta\)
+- plot \(\bar M\) as a function of \(\beta^{-1}\)
+
+\textbf{4 marks}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}162}]:} \PY{c+c1}{\PYZsh{} Step 8: Magnetisation}
+          
+          
+          \PY{c+c1}{\PYZsh{} set\PYZhy{}up the figure}
+          \PY{n}{file} \PY{o}{=}  \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Magnetisation.pdf}\PY{l+s+s2}{\PYZdq{}}  
+          \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} the range of values of beta}
+          \PY{n}{size} \PY{o}{=} \PY{l+m+mi}{32}
+          \PY{n}{betas} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{1.6}\PY{p}{,}\PY{l+m+mf}{1.3}\PY{p}{,}\PY{l+m+mf}{1.1}\PY{p}{,}\PY{l+m+mf}{1.0}\PY{p}{,}\PY{l+m+mf}{0.9}\PY{p}{,}\PY{l+m+mf}{0.8}\PY{p}{,}\PY{l+m+mf}{0.7}\PY{p}{,}\PY{l+m+mf}{0.6}\PY{p}{,}\PY{l+m+mf}{0.4}\PY{p}{,}\PY{l+m+mf}{0.1}\PY{p}{]}
+          \PY{n}{mean\PYZus{}mags} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{c+c1}{\PYZsh{} Loop over values of beta, computing the ensemble\PYZhy{}averaged M for each beta}
+          \PY{c+c1}{\PYZsh{}    name the resulting ensemble\PYZhy{}averaged M mean\PYZus{}mags}
+          \PY{c+c1}{\PYZsh{}    It is an array with the same dimension as betas}
+          \PY{k}{for} \PY{n}{beta} \PY{o+ow}{in} \PY{n}{betas}\PY{p}{:}
+              \PY{n}{grid} \PY{o}{=} \PY{n}{Grid}\PY{p}{(}\PY{n}{size}\PY{p}{,} \PY{n}{beta}\PY{p}{)}
+              \PY{n}{mean\PYZus{}mags}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{grid}\PY{o}{.}\PY{n}{do\PYZus{}sweeps}\PY{p}{(}\PY{l+m+mi}{400}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{} YOUR CODE HERE}
+          
+          \PY{c+c1}{\PYZsh{} make the plot}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{beta\PYZca{}}\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{\PYZhy{}1\PYZcb{}\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{bar M\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mf}{1.05}\PY{p}{,} \PY{l+m+mf}{1.05}\PY{p}{]}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mf}{1.}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{betas}\PY{p}{)}\PY{p}{,} \PY{n}{mean\PYZus{}mags}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{n}{file}\PY{p}{)}
+          \PY{n}{fig}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/opt/conda/lib/python3.6/site-packages/matplotlib/figure.py:457: UserWarning: matplotlib is currently using a non-GUI backend, so cannot show the figure
+  "matplotlib is currently using a non-GUI backend, "
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_35_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{critical-temperature}{%
+\paragraph{9. Critical temperature}\label{critical-temperature}}
+
+The critical temperature, \(T_c\), in the mean field approximation, is
+given by \[
+T_c=\frac{h J}{2k_B},
+\] where h is the number of nearest-neighbours, as discussed in the
+lecture. Use this to calculate the critical value \(\beta_c\) which
+corresponds to the critical temperature and mark it in the plot produced
+in step \textbf{8} (If you could not produce the plot in step \textbf{8}
+you may also mention the numerical value of \(\beta_c\) on the solution
+you hand in).
+
+Enter your answer in the box below. If you don't see a box, execute the
+hidden cell below.
+
+\textbf{2 marks}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}158}]:} \PY{n}{beta\PYZus{}crit}\PY{o}{=}\PY{n}{mywidgets}\PY{o}{.}\PY{n}{myFloatBox}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Phasetransition}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{P1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{beta\PYZus{}c=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Enter your analytically calculated value of beta\PYZus{}c to 3 sig figs}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{beta\PYZus{}crit}\PY{o}{.}\PY{n}{getWidget}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+VBox(children=(HTMLMath(value='Enter your analytically calculated value of beta_c to 3 sig figs', placeholder=…
+    \end{verbatim}
+
+    
+    \hypertarget{mean-field-approximation}{%
+\paragraph{10. Mean field
+approximation}\label{mean-field-approximation}}
+
+The ensemble-averaged value of the mean magnitization in the mean field
+approximation, is the solution of \[
+\bar M - \tanh\left( \frac{T_c\bar M}{T} \right) = 0\,,
+\] as discussed in the lecture. This equation can not be solved
+analytically for \(\bar M\), for given \(T_c/T\).
+
+Rewrite the equation in terms of \(\beta\) using the relation between
+\(T\) and \(\beta\) derived before, and solve the resulting formula
+numerically for
+\(\beta = 1.6, 1.3, 1.1, 1.0, 0.9, 0.8, 0.7, 0.6, 0.4, 0.1\). You may
+want to use the root finding methods implemented in previous exercises.
+Redo the plot of step \textbf{8}, but on top of the numerical result,
+over plot the mean field approximation. Add a legend to the plot which
+allows to distinguish the solution obtained in step \textbf{8} from the
+mean field approximation.
+
+The numerical value of \(\bar M\) versus \(\beta\) shows that the
+transition from \(\bar M=0\) at hight \(T\) to \(\bar M>0\) at low \(T\)
+is not infinitely sharp. To quantify where the transition occurs, it
+might be useful to compute \(\beta_{1/2}\), the value of \(\beta\) where
+\(\bar M=1/2\). Calculate this for both the numerical and mean field
+approximation, and indicate the point
+\((\beta,\bar M)=(\beta_{1/2}, 1/2)\) on the plot.
+
+Save the plot as `MeanField.pdf'
+
+\textbf{4 marks}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Implement the mean field calculation here: calculate mean\PYZus{}mag\PYZus{}MF, the mean field approximation to the magnetisation}
+        \PY{c+c1}{\PYZsh{} for a given value of beta. Also implement the calculation of the critical value, beta\PYZus{}c, according to the}
+        \PY{c+c1}{\PYZsh{} MFA}
+        
+        \PY{c+c1}{\PYZsh{} YOUR CODE HERE}
+        \PY{k}{raise} \PY{n+ne}{NotImplementedError}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} YOUR CODE HERE}
+        \PY{k}{raise} \PY{n+ne}{NotImplementedError}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

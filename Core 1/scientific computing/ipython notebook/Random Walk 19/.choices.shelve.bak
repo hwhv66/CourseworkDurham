@@ -1,0 +1,4 @@
+'test_randomwalks_TwoD1', (0, 12)
+'test_randomwalks_TwoD2', (512, 12)
+'test_randomwalks_threeD1', (1024, 12)
+'test_randomwalks_threeD2', (1536, 12)

@@ -1,0 +1,8 @@
+'Harmonic_RK4_1', (0, 4)
+'Harmonic_RK1_3', (512, 4)
+'Harmonic_RK1_2', (1024, 4)
+'Harmonic_RK1_0', (1536, 4)
+'Harmonic_RK1_1', (2048, 4)
+'Harmonic_EC_0', (2560, 4)
+'Harmonic_EC_2', (3072, 4)
+'Harmonic_NL', (3584, 12)
